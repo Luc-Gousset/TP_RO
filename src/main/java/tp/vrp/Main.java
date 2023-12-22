@@ -25,8 +25,8 @@ public class Main {
         List<Vehicule> vehicules = parser.getVehicleList();
 
 
-        List<Integer> dumbPath = RouteOptimizationAlgorithms.dumbHeuristic(nodes);
-
+        //List<Integer> dumbPath = RouteOptimizationAlgorithms.dumbHeuristic(nodes);
+        List<Integer> dumbPath = RouteOptimizationAlgorithms.pilotHeuristic(nodes);
         for(int i = 0; i<20; i++)
         {
             //List<Integer> graspResult = RouteOptimizationAlgorithms.grasp(nodes, 50);

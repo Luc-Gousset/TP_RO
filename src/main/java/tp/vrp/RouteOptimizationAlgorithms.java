@@ -299,4 +299,79 @@ public class RouteOptimizationAlgorithms {
     }
 
 
+    public static List<Integer> pilotHeuristic(List<Node> nodes) {
+        if (nodes.isEmpty()) return new ArrayList<>();
+
+        List<Node> nodesCompute = new LinkedList<>(nodes);
+        List<Integer> path = new ArrayList<>();
+
+        Node current = nodesCompute.remove(0);
+        path.add(current.getId());
+
+        while (!nodesCompute.isEmpty()) {
+            List<Node> twoClosestNodes = findSecondClosestNode(current, nodesCompute);
+            List<Node> workList = new LinkedList<>(nodesCompute);
+            workList.remove(twoClosestNodes.get(0));
+            workList.remove(twoClosestNodes.get(1));
+
+            Node bestNode = findTheBestOne(twoClosestNodes, workList, 2); // numberOfEvaluations is set to 2
+            path.add(bestNode.getId());
+            nodesCompute.remove(bestNode);
+            current = bestNode;
+        }
+
+        return path;
+    }
+    private static List<Node> findSecondClosestNode(Node current, List<Node> nodes) {
+        Node closest = null;
+        Node secondClosest = null;
+        double minDistanceFirst = Double.MAX_VALUE;
+        double minDistanceSecond = Double.MAX_VALUE;
+
+        for (Node node : nodes) {
+            double distance = Node.GetDistance(current, node);
+            if (distance < minDistanceFirst) {
+                minDistanceSecond = minDistanceFirst;
+                minDistanceFirst = distance;
+                secondClosest = closest;
+                closest = node;
+            } else if (distance < minDistanceSecond && distance != minDistanceFirst) {
+                minDistanceSecond = distance;
+                secondClosest = node;
+            }
+        }
+
+        return Arrays.asList(closest, secondClosest);
+    }
+
+
+    private static Node findTheBestOne(List<Node> candidates, List<Node> remainingNodes, int numberOfEvaluations) {
+        Node bestNode = null;
+        double bestScore = Double.MAX_VALUE;
+
+        for (Node candidate : candidates) {
+            double score = simulateRoute(candidate, remainingNodes, numberOfEvaluations);
+            if (score < bestScore) {
+                bestScore = score;
+                bestNode = candidate;
+            }
+        }
+
+        return bestNode;
+    }
+
+    private static double simulateRoute(Node candidate, List<Node> remainingNodes, int numberOfEvaluations) {
+        double totalDistance = 0;
+        Node current = candidate;
+        List<Node> nodesToEvaluate = new ArrayList<>(remainingNodes);
+
+        for (int i = 0; i < numberOfEvaluations && !nodesToEvaluate.isEmpty(); i++) {
+            Node nextClosest = findClosestNode(current, nodesToEvaluate); // Assurez-vous que cette méthode est définie
+            totalDistance += Node.GetDistance(current, nextClosest);
+            current = nextClosest;
+            nodesToEvaluate.remove(nextClosest);
+        }
+
+        return totalDistance;
+    }
 }
