@@ -1,0 +1,725 @@
+<instance>
+    <info>
+        <dataset>27</dataset>
+        <name>26</name>
+    </info>
+    <network>
+        <nodes>
+            <node id="77" type="71">
+                <cx>5.241911299470181</cx>
+                <cy>19.20874820302697</cy>
+            </node>
+            <node id="80" type="46">
+                <cx>84.67128203303183</cx>
+                <cy>6.060706412400075</cy>
+            </node>
+            <node id="71" type="69">
+                <cx>11.153242838630284</cx>
+                <cy>64.96567315588365</cy>
+            </node>
+            <node id="24" type="96">
+                <cx>66.46363530196079</cx>
+                <cy>28.625433541079403</cy>
+            </node>
+            <node id="80" type="25">
+                <cx>84.87573256785592</cx>
+                <cy>46.64003356839916</cy>
+            </node>
+            <node id="62" type="56">
+                <cx>28.43452417385134</cx>
+                <cy>1.3682769489639868</cy>
+            </node>
+            <node id="35" type="52">
+                <cx>25.182822759949154</cx>
+                <cy>24.23292479328314</cy>
+            </node>
+            <node id="41" type="51">
+                <cx>40.08254708121991</cx>
+                <cy>94.27928344809489</cy>
+            </node>
+            <node id="31" type="44">
+                <cx>31.77443865201448</cx>
+                <cy>1.2928494147137148</cy>
+            </node>
+            <node id="6" type="7">
+                <cx>26.23474400628808</cx>
+                <cy>78.05843818487381</cy>
+            </node>
+            <node id="26" type="13">
+                <cx>68.33401922080006</cx>
+                <cy>63.28014418153393</cy>
+            </node>
+            <node id="47" type="37">
+                <cx>93.21672576445772</cx>
+                <cy>26.842020390549305</cy>
+            </node>
+            <node id="6" type="97">
+                <cx>79.97714689901359</cx>
+                <cy>87.52596016047208</cy>
+            </node>
+            <node id="91" type="91">
+                <cx>70.35251082105027</cx>
+                <cy>12.561395809126651</cy>
+            </node>
+            <node id="79" type="28">
+                <cx>76.418614061693</cx>
+                <cy>6.58160286466547</cy>
+            </node>
+            <node id="47" type="25">
+                <cx>77.85834317189135</cx>
+                <cy>54.990321912548765</cy>
+            </node>
+            <node id="86" type="63">
+                <cx>26.87377308807466</cx>
+                <cy>85.9539196929027</cy>
+            </node>
+            <node id="94" type="45">
+                <cx>89.90683022734983</cx>
+                <cy>89.30022357298229</cy>
+            </node>
+            <node id="15" type="50">
+                <cx>9.787971280912377</cx>
+                <cy>6.8085910474193545</cy>
+            </node>
+            <node id="10" type="77">
+                <cx>0.2816614094607539</cx>
+                <cy>58.23895574825316</cy>
+            </node>
+            <node id="57" type="97">
+                <cx>51.75377161465404</cx>
+                <cy>79.61319911212523</cy>
+            </node>
+            <node id="89" type="24">
+                <cx>52.604004133440974</cx>
+                <cy>63.110072551380505</cy>
+            </node>
+            <node id="86" type="67">
+                <cx>80.12232462032168</cx>
+                <cy>44.04975506388288</cy>
+            </node>
+            <node id="92" type="56">
+                <cx>42.235489965004746</cx>
+                <cy>16.43573879440786</cy>
+            </node>
+            <node id="63" type="41">
+                <cx>79.47983813624529</cx>
+                <cy>33.91091369524878</cy>
+            </node>
+            <node id="75" type="30">
+                <cx>46.18437266674618</cx>
+                <cy>96.71091398182334</cy>
+            </node>
+            <node id="53" type="95">
+                <cx>27.639403790019102</cx>
+                <cy>69.84688553082748</cy>
+            </node>
+            <node id="87" type="44">
+                <cx>68.11663419911642</cx>
+                <cy>38.07955318772892</cy>
+            </node>
+            <node id="67" type="60">
+                <cx>72.0533260938727</cx>
+                <cy>15.420259298242268</cy>
+            </node>
+            <node id="90" type="9">
+                <cx>77.32362762694038</cx>
+                <cy>7.402540108707234</cy>
+            </node>
+            <node id="97" type="59">
+                <cx>33.52402103981434</cx>
+                <cy>67.88602290639264</cy>
+            </node>
+            <node id="50" type="33">
+                <cx>47.61621237892554</cx>
+                <cy>76.859841535756</cy>
+            </node>
+            <node id="11" type="75">
+                <cx>42.32770522002392</cx>
+                <cy>59.19988774470563</cy>
+            </node>
+            <node id="7" type="45">
+                <cx>81.69113719572151</cx>
+                <cy>76.82064084379977</cy>
+            </node>
+            <node id="35" type="21">
+                <cx>69.31870407147439</cx>
+                <cy>36.25024165064523</cy>
+            </node>
+            <node id="33" type="59">
+                <cx>36.225960861244445</cx>
+                <cy>55.15203523472446</cy>
+            </node>
+            <node id="94" type="80">
+                <cx>93.30092821362547</cx>
+                <cy>47.01943560810224</cy>
+            </node>
+            <node id="63" type="50">
+                <cx>94.96231705252777</cx>
+                <cy>61.74453996656848</cy>
+            </node>
+            <node id="24" type="71">
+                <cx>35.43204838967503</cx>
+                <cy>55.208521339887426</cy>
+            </node>
+            <node id="62" type="71">
+                <cx>70.0307819115263</cx>
+                <cy>92.75163964813306</cy>
+            </node>
+            <node id="18" type="42">
+                <cx>60.84499695050335</cx>
+                <cy>57.12775866838511</cy>
+            </node>
+            <node id="98" type="67">
+                <cx>65.02874505214642</cx>
+                <cy>41.22014922609336</cy>
+            </node>
+            <node id="19" type="63">
+                <cx>10.670005175386487</cx>
+                <cy>25.184995849274927</cy>
+            </node>
+            <node id="70" type="11">
+                <cx>20.39414687782468</cx>
+                <cy>79.32526108690762</cy>
+            </node>
+            <node id="25" type="53">
+                <cx>21.81409219804441</cx>
+                <cy>97.5692701119782</cy>
+            </node>
+            <node id="49" type="80">
+                <cx>95.58797766726491</cx>
+                <cy>0.15694776763298668</cy>
+            </node>
+            <node id="30" type="59">
+                <cx>63.71301080866169</cx>
+                <cy>35.30915339719945</cy>
+            </node>
+            <node id="82" type="86">
+                <cx>16.76799641431945</cx>
+                <cy>91.0076073049066</cy>
+            </node>
+            <node id="91" type="52">
+                <cx>3.443566528624775</cx>
+                <cy>0.06328954333176817</cy>
+            </node>
+            <node id="5" type="21">
+                <cx>24.446244166291496</cx>
+                <cy>5.912100541622212</cy>
+            </node>
+            <node id="96" type="64">
+                <cx>35.63456549622298</cx>
+                <cy>87.10589358076307</cy>
+            </node>
+            <node id="96" type="15">
+                <cx>63.553574170219726</cx>
+                <cy>91.76364519414024</cy>
+            </node>
+            <node id="81" type="18">
+                <cx>45.806603182180915</cx>
+                <cy>65.41528520105494</cy>
+            </node>
+            <node id="73" type="84">
+                <cx>23.388724929930007</cx>
+                <cy>86.83088946296105</cy>
+            </node>
+            <node id="26" type="39">
+                <cx>14.682297655922339</cx>
+                <cy>47.23698204125186</cy>
+            </node>
+            <node id="90" type="43">
+                <cx>60.764544078252115</cx>
+                <cy>27.73115412651197</cy>
+            </node>
+            <node id="68" type="39">
+                <cx>89.69085732136769</cx>
+                <cy>98.32060525777317</cy>
+            </node>
+            <node id="65" type="68">
+                <cx>49.77699406894918</cx>
+                <cy>18.071622266453414</cy>
+            </node>
+            <node id="68" type="75">
+                <cx>44.46373973577591</cx>
+                <cy>28.775410875723306</cy>
+            </node>
+            <node id="43" type="14">
+                <cx>47.60266996713766</cx>
+                <cy>25.407399679348785</cy>
+            </node>
+            <node id="86" type="83">
+                <cx>68.81845997470812</cx>
+                <cy>53.476693193765044</cy>
+            </node>
+            <node id="72" type="39">
+                <cx>28.040209676606864</cx>
+                <cy>95.95855723633899</cy>
+            </node>
+            <node id="6" type="58">
+                <cx>26.71279689001912</cx>
+                <cy>42.86332133564446</cy>
+            </node>
+            <node id="98" type="93">
+                <cx>0.07526879480670434</cx>
+                <cy>47.66642666839002</cy>
+            </node>
+            <node id="96" type="14">
+                <cx>92.44397404805152</cx>
+                <cy>50.673421947968</cy>
+            </node>
+            <node id="101" type="0">
+                <cx>75.1015643704251</cx>
+                <cy>47.35074978785268</cy>
+            </node>
+            <node id="2" type="25">
+                <cx>32.663490630802784</cx>
+                <cy>90.08044485646678</cy>
+            </node>
+            <node id="50" type="45">
+                <cx>65.44334903810338</cx>
+                <cy>47.71191846318307</cy>
+            </node>
+            <node id="38" type="25">
+                <cx>43.179013095061215</cx>
+                <cy>99.32237420309238</cy>
+            </node>
+            <node id="8" type="60">
+                <cx>63.466109952102634</cx>
+                <cy>85.37296407680738</cy>
+            </node>
+            <node id="74" type="51">
+                <cx>23.644243059571167</cx>
+                <cy>27.84226059950401</cy>
+            </node>
+            <node id="39" type="89">
+                <cx>38.052374872846706</cx>
+                <cy>99.91037316773014</cy>
+            </node>
+            <node id="37" type="7">
+                <cx>27.412384065892525</cx>
+                <cy>58.405424811354855</cy>
+            </node>
+            <node id="19" type="64">
+                <cx>21.410421601675612</cx>
+                <cy>31.202658930328052</cy>
+            </node>
+            <node id="78" type="30">
+                <cx>79.5471724092297</cx>
+                <cy>37.16700189620199</cy>
+            </node>
+            <node id="25" type="41">
+                <cx>23.95411525003509</cx>
+                <cy>50.709679748135684</cy>
+            </node>
+            <node id="31" type="23">
+                <cx>72.4645740498178</cx>
+                <cy>78.2169609332424</cy>
+            </node>
+            <node id="59" type="14">
+                <cx>8.09059176722613</cx>
+                <cy>82.05847585921741</cy>
+            </node>
+            <node id="42" type="17">
+                <cx>77.14005500404613</cx>
+                <cy>98.54746773230808</cy>
+            </node>
+            <node id="84" type="20">
+                <cx>99.51635908736758</cx>
+                <cy>95.65663256772068</cy>
+            </node>
+            <node id="4" type="39">
+                <cx>22.123404135143964</cx>
+                <cy>34.25124906269657</cy>
+            </node>
+            <node id="62" type="46">
+                <cx>34.431670483279575</cx>
+                <cy>5.796467552602613</cy>
+            </node>
+            <node id="61" type="70">
+                <cx>19.76195718591859</cx>
+                <cy>74.78880726753839</cy>
+            </node>
+            <node id="67" type="84">
+                <cx>2.534967298496671</cx>
+                <cy>32.58750748973104</cy>
+            </node>
+            <node id="67" type="86">
+                <cx>87.89023057025398</cx>
+                <cy>88.0696853260635</cy>
+            </node>
+            <node id="22" type="43">
+                <cx>60.254745499685406</cx>
+                <cy>65.16213617952731</cy>
+            </node>
+            <node id="45" type="14">
+                <cx>82.2519751798718</cx>
+                <cy>2.401708711073103</cy>
+            </node>
+            <node id="4" type="47">
+                <cx>68.76834533393938</cx>
+                <cy>43.73089727835988</cy>
+            </node>
+            <node id="49" type="57">
+                <cx>63.38787567978857</cx>
+                <cy>35.307603647460716</cy>
+            </node>
+            <node id="19" type="89">
+                <cx>39.27516954484928</cx>
+                <cy>0.3671621879701048</cy>
+            </node>
+            <node id="88" type="55">
+                <cx>0.8959529920720133</cx>
+                <cy>21.59168228709165</cy>
+            </node>
+            <node id="41" type="90">
+                <cx>31.320032087407068</cx>
+                <cy>98.29094875932194</cy>
+            </node>
+            <node id="15" type="33">
+                <cx>70.40196934398767</cx>
+                <cy>54.46764173523624</cy>
+            </node>
+            <node id="31" type="66">
+                <cx>80.20810947620105</cx>
+                <cy>33.552060383398164</cy>
+            </node>
+            <node id="40" type="95">
+                <cx>65.2303589655089</cx>
+                <cy>98.34423007324106</cy>
+            </node>
+            <node id="5" type="89">
+                <cx>77.69894475983277</cx>
+                <cy>56.43667188061438</cy>
+            </node>
+            <node id="62" type="95">
+                <cx>85.87569773431967</cx>
+                <cy>74.52123387708272</cy>
+            </node>
+            <node id="26" type="14">
+                <cx>54.29848118337814</cx>
+                <cy>94.86339842117195</cy>
+            </node>
+            <node id="59" type="69">
+                <cx>37.98916935928565</cx>
+                <cy>95.26113660242922</cy>
+            </node>
+            <node id="31" type="59">
+                <cx>37.79170257875675</cx>
+                <cy>75.21401514265176</cy>
+            </node>
+            <node id="11" type="42">
+                <cx>73.40687174261323</cx>
+                <cy>84.62374497218367</cy>
+            </node>
+        </nodes>
+        <euclidean />
+        <decimals>94</decimals>
+    </network>
+    <fleet>
+        <vehicle_profile type="46">
+            <departure_node>88</departure_node>
+            <arrival_node>83</arrival_node>
+            <capacity>92</capacity>
+        </vehicle_profile>
+    </fleet>
+    <requests>
+        <request id="24" node="79">
+            <quantity>60</quantity>
+        </request>
+        <request id="86" node="13">
+            <quantity>88</quantity>
+        </request>
+        <request id="84" node="20">
+            <quantity>19</quantity>
+        </request>
+        <request id="56" node="23">
+            <quantity>64</quantity>
+        </request>
+        <request id="34" node="60">
+            <quantity>75</quantity>
+        </request>
+        <request id="82" node="71">
+            <quantity>22</quantity>
+        </request>
+        <request id="86" node="79">
+            <quantity>69</quantity>
+        </request>
+        <request id="23" node="46">
+            <quantity>99</quantity>
+        </request>
+        <request id="74" node="77">
+            <quantity>76</quantity>
+        </request>
+        <request id="92" node="5">
+            <quantity>83</quantity>
+        </request>
+        <request id="36" node="52">
+            <quantity>91</quantity>
+        </request>
+        <request id="60" node="32">
+            <quantity>15</quantity>
+        </request>
+        <request id="15" node="39">
+            <quantity>8</quantity>
+        </request>
+        <request id="71" node="28">
+            <quantity>29</quantity>
+        </request>
+        <request id="64" node="45">
+            <quantity>70</quantity>
+        </request>
+        <request id="57" node="57">
+            <quantity>94</quantity>
+        </request>
+        <request id="1" node="46">
+            <quantity>13</quantity>
+        </request>
+        <request id="6" node="100">
+            <quantity>5</quantity>
+        </request>
+        <request id="72" node="81">
+            <quantity>89</quantity>
+        </request>
+        <request id="43" node="81">
+            <quantity>42</quantity>
+        </request>
+        <request id="71" node="78">
+            <quantity>83</quantity>
+        </request>
+        <request id="38" node="99">
+            <quantity>27</quantity>
+        </request>
+        <request id="11" node="89">
+            <quantity>77</quantity>
+        </request>
+        <request id="85" node="77">
+            <quantity>77</quantity>
+        </request>
+        <request id="10" node="83">
+            <quantity>60</quantity>
+        </request>
+        <request id="36" node="41">
+            <quantity>40</quantity>
+        </request>
+        <request id="59" node="15">
+            <quantity>33</quantity>
+        </request>
+        <request id="11" node="94">
+            <quantity>5</quantity>
+        </request>
+        <request id="48" node="52">
+            <quantity>66</quantity>
+        </request>
+        <request id="93" node="77">
+            <quantity>39</quantity>
+        </request>
+        <request id="22" node="70">
+            <quantity>4</quantity>
+        </request>
+        <request id="52" node="27">
+            <quantity>65</quantity>
+        </request>
+        <request id="45" node="43">
+            <quantity>35</quantity>
+        </request>
+        <request id="36" node="57">
+            <quantity>21</quantity>
+        </request>
+        <request id="49" node="87">
+            <quantity>95</quantity>
+        </request>
+        <request id="68" node="18">
+            <quantity>8</quantity>
+        </request>
+        <request id="5" node="79">
+            <quantity>38</quantity>
+        </request>
+        <request id="45" node="39">
+            <quantity>38</quantity>
+        </request>
+        <request id="65" node="7">
+            <quantity>53</quantity>
+        </request>
+        <request id="12" node="25">
+            <quantity>51</quantity>
+        </request>
+        <request id="72" node="27">
+            <quantity>31</quantity>
+        </request>
+        <request id="16" node="17">
+            <quantity>70</quantity>
+        </request>
+        <request id="12" node="65">
+            <quantity>11</quantity>
+        </request>
+        <request id="66" node="23">
+            <quantity>70</quantity>
+        </request>
+        <request id="39" node="93">
+            <quantity>10</quantity>
+        </request>
+        <request id="77" node="39">
+            <quantity>55</quantity>
+        </request>
+        <request id="15" node="71">
+            <quantity>95</quantity>
+        </request>
+        <request id="37" node="47">
+            <quantity>87</quantity>
+        </request>
+        <request id="57" node="93">
+            <quantity>8</quantity>
+        </request>
+        <request id="28" node="50">
+            <quantity>61</quantity>
+        </request>
+        <request id="51" node="95">
+            <quantity>12</quantity>
+        </request>
+        <request id="74" node="34">
+            <quantity>44</quantity>
+        </request>
+        <request id="90" node="6">
+            <quantity>38</quantity>
+        </request>
+        <request id="52" node="21">
+            <quantity>65</quantity>
+        </request>
+        <request id="66" node="23">
+            <quantity>54</quantity>
+        </request>
+        <request id="17" node="55">
+            <quantity>25</quantity>
+        </request>
+        <request id="56" node="16">
+            <quantity>26</quantity>
+        </request>
+        <request id="48" node="4">
+            <quantity>87</quantity>
+        </request>
+        <request id="34" node="71">
+            <quantity>2</quantity>
+        </request>
+        <request id="95" node="63">
+            <quantity>78</quantity>
+        </request>
+        <request id="18" node="9">
+            <quantity>44</quantity>
+        </request>
+        <request id="92" node="6">
+            <quantity>20</quantity>
+        </request>
+        <request id="8" node="21">
+            <quantity>37</quantity>
+        </request>
+        <request id="100" node="44">
+            <quantity>16</quantity>
+        </request>
+        <request id="45" node="31">
+            <quantity>78</quantity>
+        </request>
+        <request id="69" node="28">
+            <quantity>48</quantity>
+        </request>
+        <request id="40" node="85">
+            <quantity>21</quantity>
+        </request>
+        <request id="21" node="5">
+            <quantity>100</quantity>
+        </request>
+        <request id="36" node="30">
+            <quantity>75</quantity>
+        </request>
+        <request id="84" node="34">
+            <quantity>12</quantity>
+        </request>
+        <request id="95" node="91">
+            <quantity>53</quantity>
+        </request>
+        <request id="54" node="23">
+            <quantity>83</quantity>
+        </request>
+        <request id="13" node="96">
+            <quantity>4</quantity>
+        </request>
+        <request id="83" node="79">
+            <quantity>46</quantity>
+        </request>
+        <request id="6" node="66">
+            <quantity>79</quantity>
+        </request>
+        <request id="90" node="56">
+            <quantity>27</quantity>
+        </request>
+        <request id="50" node="59">
+            <quantity>1</quantity>
+        </request>
+        <request id="63" node="46">
+            <quantity>1</quantity>
+        </request>
+        <request id="33" node="15">
+            <quantity>45</quantity>
+        </request>
+        <request id="30" node="88">
+            <quantity>94</quantity>
+        </request>
+        <request id="82" node="8">
+            <quantity>79</quantity>
+        </request>
+        <request id="78" node="91">
+            <quantity>56</quantity>
+        </request>
+        <request id="93" node="15">
+            <quantity>99</quantity>
+        </request>
+        <request id="6" node="26">
+            <quantity>39</quantity>
+        </request>
+        <request id="67" node="45">
+            <quantity>46</quantity>
+        </request>
+        <request id="98" node="56">
+            <quantity>29</quantity>
+        </request>
+        <request id="21" node="17">
+            <quantity>56</quantity>
+        </request>
+        <request id="40" node="67">
+            <quantity>69</quantity>
+        </request>
+        <request id="19" node="39">
+            <quantity>26</quantity>
+        </request>
+        <request id="23" node="74">
+            <quantity>80</quantity>
+        </request>
+        <request id="20" node="30">
+            <quantity>80</quantity>
+        </request>
+        <request id="78" node="51">
+            <quantity>23</quantity>
+        </request>
+        <request id="15" node="20">
+            <quantity>14</quantity>
+        </request>
+        <request id="87" node="17">
+            <quantity>80</quantity>
+        </request>
+        <request id="3" node="50">
+            <quantity>84</quantity>
+        </request>
+        <request id="37" node="94">
+            <quantity>54</quantity>
+        </request>
+        <request id="78" node="99">
+            <quantity>9</quantity>
+        </request>
+        <request id="15" node="68">
+            <quantity>32</quantity>
+        </request>
+        <request id="69" node="67">
+            <quantity>81</quantity>
+        </request>
+        <request id="78" node="23">
+            <quantity>21</quantity>
+        </request>
+    </requests>
+</instance>
