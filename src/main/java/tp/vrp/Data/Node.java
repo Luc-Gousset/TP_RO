@@ -18,7 +18,10 @@ public class Node {
     }
 
     public static double GetDistance(Node a, Node b){
-        return R * Math.acos(Math.sin(a.latitude)*Math.sin(b.latitude)+Math.cos(a.latitude)*Math.cos(b.latitude)*Math.cos(a.longitude-b.longitude));
+        //R arccos (sin(φ1) sin(φ2) + cos(φ1) cos(φ2) cos(Ψ1 − Ψ2))
+        //return R * Math.acos(Math.sin(a.latitude)*Math.sin(b.latitude)+Math.cos(a.latitude)*Math.cos(b.latitude)*Math.cos(a.longitude-b.longitude));
+        return Math.sqrt(Math.pow(a.longitude-b.longitude, 2)+ Math.pow(a.latitude-b.latitude, 2));
+
     }
 
     public Node() {

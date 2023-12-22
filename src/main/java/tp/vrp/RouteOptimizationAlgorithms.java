@@ -110,25 +110,27 @@ public class RouteOptimizationAlgorithms {
      */
     public static List<Integer> iteratedLocalSearchWithTwoOpt(List<Integer> initialRoute, List<Node> nodes, int maxIter) {
         List<Integer> currentRoute = new ArrayList<>(initialRoute);
-        List<Integer> bestRoute = currentRoute;
+        List<Integer> bestRoute = new ArrayList<>(currentRoute);
         double bestDistance = NodeUtil.totalDistance(currentRoute, nodes);
 
+        int lastImprovementIteration = 0; // Initialize the last improvement iteration
+
         for (int iteration = 0; iteration < maxIter; iteration++) {
-            List<Integer> perturbedRoute = (perturbRoute(currentRoute));
+            List<Integer> perturbedRoute = perturbRoute(currentRoute, iteration, lastImprovementIteration);
             List<Integer> localOptimumRoute = applyTwoOpt(perturbedRoute, nodes);
 
             double perturbedDistance = NodeUtil.totalDistance(localOptimumRoute, nodes);
             if (perturbedDistance < bestDistance) {
-                bestRoute = new ArrayList<>(perturbedRoute);
+                bestRoute = new ArrayList<>(localOptimumRoute);
                 bestDistance = perturbedDistance;
+                lastImprovementIteration = iteration; // Update the last improvement iteration
             }
 
             // Print the progress as a percentage
             double progress = (double) iteration / maxIter * 100;
             System.out.printf("Iteration %d of %d (%.2f%% complete)\n", iteration + 1, maxIter, progress);
 
-
-            currentRoute = perturbedRoute;
+            currentRoute = new ArrayList<>(localOptimumRoute); // Update currentRoute to the locally optimized route
         }
 
         return bestRoute;
@@ -141,15 +143,55 @@ public class RouteOptimizationAlgorithms {
      * @param route The current route.
      * @return A perturbed route.
      */
+    /**
     private static List<Integer> perturbRoute(List<Integer> route) {
         Random random = new Random();
         int index1 = random.nextInt(route.size());
         int index2 = random.nextInt(route.size());
 
-        // Simple swap perturbation, can be more complex based on your problem
         Collections.swap(route, index1, index2);
 
         return route;
+    }
+**/
+    /**
+     * Adaptively perturbs the route to escape local optima.
+     *
+     * @param route The current route.
+     * @param iteration The current iteration number.
+     * @param lastImprovementIteration The iteration number of the last improvement.
+     * @return A perturbed route.
+     */
+    private static List<Integer> perturbRoute(List<Integer> route, int iteration, int lastImprovementIteration) {
+        Random random = new Random();
+        int perturbationStrength = calculatePerturbationStrength(iteration, lastImprovementIteration);
+
+        for (int i = 0; i < perturbationStrength; i++) {
+            int index1 = random.nextInt(route.size());
+            int index2 = random.nextInt(route.size());
+            Collections.swap(route, index1, index2);
+        }
+
+        return route;
+    }
+
+    /**
+     * Calculates the strength of the perturbation based on the current state of the search.
+     *
+     * @param iteration The current iteration number.
+     * @param lastImprovementIteration The iteration number of the last improvement.
+     * @return The strength of the perturbation.
+     */
+    private static int calculatePerturbationStrength(int iteration, int lastImprovementIteration) {
+        int elapsedIterations = iteration - lastImprovementIteration;
+        // Example logic: increase perturbation strength if no improvements have been made for a while
+        if (elapsedIterations > 50) {
+            return 3; // Strong perturbation
+        } else if (elapsedIterations > 20) {
+            return 2; // Medium perturbation
+        } else {
+            return 1; // Mild perturbation
+        }
     }
 
 
@@ -166,7 +208,7 @@ public class RouteOptimizationAlgorithms {
         Node depot = NodeUtil.findNodeById(101, nodes);
 
         for (int i = 0; i < maxIterations; i++) {
-            List<Integer> initialSolution = greedyRandomizedConstruction(nodes, depot.id, 0.7);
+            List<Integer> initialSolution = greedyRandomizedConstruction(nodes, depot.id, 0);
             List<Integer> localOptimum = applyTwoOpt(initialSolution, nodes);
             double localOptimumCost = NodeUtil.totalDistance(localOptimum, nodes);
 

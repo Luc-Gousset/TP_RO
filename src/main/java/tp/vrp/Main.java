@@ -27,27 +27,29 @@ public class Main {
 
         List<Integer> dumbPath = RouteOptimizationAlgorithms.dumbHeuristic(nodes);
 
+        for(int i = 0; i<20; i++)
+        {
+            //List<Integer> graspResult = RouteOptimizationAlgorithms.grasp(nodes, 50);
+            List<Integer> graspResult = RouteOptimizationAlgorithms.iteratedLocalSearchWithTwoOpt(dumbPath, nodes, 100);
+            System.out.println("Grasp distance sequence " + i +" " + NodeUtil.totalDistance(graspResult, nodes));
+            //System.out.println();
 
-        List<Integer> graspResult = RouteOptimizationAlgorithms.grasp(nodes, 100);
-
-        System.out.println();
-        System.out.println("Grasp distance sequence " + NodeUtil.totalDistance(graspResult, nodes));
-        System.out.println();
-
-        List<Integer> shortestPath = NodeUtil.reorderListWithDepotFirst(graspResult, nodes, 0);
-
-
-
-        List<List<Integer>> solutions = computeSolFromSegment(shortestPath, nodes, requests, vehicules);
-
-        //Reaply 2 OPT
-        solutions = RouteOptimizationAlgorithms.apply2OptOnSol(solutions, nodes);
-
-        NodeUtil.printRouteResults(solutions, nodes);
+            List<Integer> shortestPath = NodeUtil.reorderListWithDepotFirst(graspResult, nodes, 0);
 
 
-        TourPlotter.plotTours(solutions, nodes);
-        TourPlotter.plotSequence(shortestPath, nodes);
+
+            List<List<Integer>> solutions = computeSolFromSegment(shortestPath, nodes, requests, vehicules);
+
+            //Reaply 2 OPT
+            solutions = RouteOptimizationAlgorithms.apply2OptOnSol(solutions, nodes);
+
+            NodeUtil.printRouteResults(solutions, nodes);
+
+
+            TourPlotter.plotTours(solutions, nodes);
+            TourPlotter.plotSequence(shortestPath, nodes);
+
+        }
 
 
 
