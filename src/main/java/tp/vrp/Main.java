@@ -27,10 +27,10 @@ public class Main {
 
         List<Integer> dumbPath = RouteOptimizationAlgorithms.dumbHeuristic(nodes);
 
-        for(int i = 0; i<20; i++)
+        for(int i = 0; i<50; i++)
         {
-            //List<Integer> graspResult = RouteOptimizationAlgorithms.grasp(nodes, 50);
-            List<Integer> graspResult = RouteOptimizationAlgorithms.iteratedLocalSearchWithTwoOpt(dumbPath, nodes, 100);
+            List<Integer> graspResult = RouteOptimizationAlgorithms.grasp(nodes, 50, 6);
+            //List<Integer> graspResult = RouteOptimizationAlgorithms.iteratedLocalSearchWithTwoOpt(RouteOptimizationAlgorithms.randomHeuristic(nodes), nodes, 50, 6);
             System.out.println("Grasp distance sequence " + i +" " + NodeUtil.totalDistance(graspResult, nodes));
             //System.out.println();
 

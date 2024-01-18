@@ -106,9 +106,11 @@ public class RouteOptimizationAlgorithms {
      *
      * @param initialRoute The initial route.
      * @param nodes        The list of all nodes.
+     * @param maxIter The maximum number of iterations to perform.
+     * @param maxIterWithoutImprovement The maximum number of iterations without improvement before stopping.
      * @return An improved route.
      */
-    public static List<Integer> iteratedLocalSearchWithTwoOpt(List<Integer> initialRoute, List<Node> nodes, int maxIter) {
+    public static List<Integer> iteratedLocalSearchWithTwoOpt(List<Integer> initialRoute, List<Node> nodes, int maxIter, int maxIterWithoutImprovement) {
         List<Integer> currentRoute = new ArrayList<>(initialRoute);
         List<Integer> bestRoute = new ArrayList<>(currentRoute);
         double bestDistance = NodeUtil.totalDistance(currentRoute, nodes);
@@ -116,7 +118,7 @@ public class RouteOptimizationAlgorithms {
         int lastImprovementIteration = 0; // Initialize the last improvement iteration
 
         for (int iteration = 0; iteration < maxIter; iteration++) {
-            List<Integer> perturbedRoute = perturbRoute(currentRoute, iteration, lastImprovementIteration);
+            List<Integer> perturbedRoute = perturbRoute(currentRoute, iteration);
             List<Integer> localOptimumRoute = applyTwoOpt(perturbedRoute, nodes);
 
             double perturbedDistance = NodeUtil.totalDistance(localOptimumRoute, nodes);
@@ -126,9 +128,15 @@ public class RouteOptimizationAlgorithms {
                 lastImprovementIteration = iteration; // Update the last improvement iteration
             }
 
+            // Stop if no improvement is seen for maxIterWithoutImprovement iterations
+            if (iteration - lastImprovementIteration >= maxIterWithoutImprovement) {
+                System.out.println("Stopping early due to no improvement.");
+                break;
+            }
+
             // Print the progress as a percentage
             double progress = (double) iteration / maxIter * 100;
-            System.out.printf("Iteration %d of %d (%.2f%% complete)\n", iteration + 1, maxIter, progress);
+            System.out.printf("Iteration %d of %d (%.2f%% complete)  distance : %f\n", iteration + 1, maxIter, progress, bestDistance);
 
             currentRoute = new ArrayList<>(localOptimumRoute); // Update currentRoute to the locally optimized route
         }
@@ -138,43 +146,78 @@ public class RouteOptimizationAlgorithms {
 
 
     /**
-     * Slightly modifies the route to escape local optima.
-     *
-     * @param route The current route.
-     * @return A perturbed route.
-     */
-    /**
-    private static List<Integer> perturbRoute(List<Integer> route) {
-        Random random = new Random();
-        int index1 = random.nextInt(route.size());
-        int index2 = random.nextInt(route.size());
-
-        Collections.swap(route, index1, index2);
-
-        return route;
-    }
-**/
-    /**
-     * Adaptively perturbs the route to escape local optima.
+     * Uses the Ackley function to determine the perturbation strategy.
      *
      * @param route The current route.
      * @param iteration The current iteration number.
-     * @param lastImprovementIteration The iteration number of the last improvement.
      * @return A perturbed route.
      */
-    private static List<Integer> perturbRoute(List<Integer> route, int iteration, int lastImprovementIteration) {
-        Random random = new Random();
-        int perturbationStrength = calculatePerturbationStrength(iteration, lastImprovementIteration);
-
-        for (int i = 0; i < perturbationStrength; i++) {
-            int index1 = random.nextInt(route.size());
-            int index2 = random.nextInt(route.size());
-            Collections.swap(route, index1, index2);
+    private static List<Integer> perturbRoute(List<Integer> route, int iteration) {
+        double ackleyValue = calculateAckleyValue(iteration);
+        int swapsToPerform = (int) (ackleyValue * 1.5 );
+        System.out.println("SWAP " + swapsToPerform + " " + ackleyValue);
+        for (int i = 0; i < swapsToPerform; i++) {
+            swapRandomElements(route);
         }
 
         return route;
     }
 
+    /**
+     * Swaps two random elements in the route.
+     *
+     * @param route The route to be modified.
+     */
+    private static void swapRandomElements(List<Integer> route) {
+        Random random = new Random();
+        int index1 = random.nextInt(route.size());
+        int index2 = random.nextInt(route.size());
+        Collections.swap(route, index1, index2);
+    }
+
+    /**
+     * Calculates the Ackley function value for a given iteration.
+     *
+     * @param iteration The iteration number.
+     * @return The Ackley function value.
+     */
+    private static double calculateAckleyValue(int iteration) {
+        // Parameters of the Ackley function
+        double a = 20;
+        double b = 0.2;
+        double c = 2 * Math.PI;
+
+        double sum1 = Math.pow(iteration, 2);
+        double sum2 = Math.cos(c * iteration);
+
+        return -a * Math.exp(-b * Math.sqrt(sum1)) - Math.exp(sum2) + a + Math.exp(1);
+    }
+
+    /**
+     * Generates a random route from a start node for a given set of nodes.
+     *
+     * @param nodes The list of nodes to include in the route.
+     * @return A random route starting from the start node.
+     */
+    public static List<Integer> randomHeuristic(List<Node> nodes) {
+        Node startNode = NodeUtil.findStartNode(nodes);
+        List<Node> unvisited = new ArrayList<>(nodes);
+        List<Integer> path = new ArrayList<>();
+
+        // Remove the start node from the unvisited list and add it to the path
+        unvisited.remove(startNode);
+        path.add(startNode.id);
+
+        // Shuffle the remaining unvisited nodes
+        Collections.shuffle(unvisited);
+
+        // Add the shuffled nodes to the path
+        for (Node node : unvisited) {
+            path.add(node.id);
+        }
+
+        return path;
+    }
     /**
      * Calculates the strength of the perturbation based on the current state of the search.
      *
@@ -194,33 +237,41 @@ public class RouteOptimizationAlgorithms {
         }
     }
 
-
     /**
      * Applies the GRASP methodology to the VRP.
      *
-     * @param nodes         The list of all nodes.
-     * @param maxIterations The number of iterations for the GRASP algorithm.
+     * @param nodes                    The list of all nodes.
+     * @param maxIterations            The number of iterations for the GRASP algorithm.
+     * @param maxIterWithoutImprovement The maximum number of iterations without improvement before stopping.
      * @return An improved route.
      */
-    public static List<Integer> grasp(List<Node> nodes, int maxIterations) {
+    public static List<Integer> grasp(List<Node> nodes, int maxIterations, int maxIterWithoutImprovement) {
         List<Integer> bestRoute = null;
         double bestCost = Double.MAX_VALUE;
-        Node depot = NodeUtil.findNodeById(101, nodes);
+        Node depot = NodeUtil.findStartNode(nodes); //NodeUtil.findNodeById(101, nodes);
+
+        int lastImprovementIteration = 0; // Initialize the last improvement iteration
 
         for (int i = 0; i < maxIterations; i++) {
-            List<Integer> initialSolution = greedyRandomizedConstruction(nodes, depot.id, 0);
+            List<Integer> initialSolution = greedyRandomizedConstruction(nodes, depot.id, 0.2);
             List<Integer> localOptimum = applyTwoOpt(initialSolution, nodes);
             double localOptimumCost = NodeUtil.totalDistance(localOptimum, nodes);
 
             if (localOptimumCost < bestCost) {
                 bestRoute = new ArrayList<>(localOptimum);
                 bestCost = localOptimumCost;
+                lastImprovementIteration = i; // Update the last improvement iteration
+            }
+
+            // Stop if no improvement is seen for maxIterWithoutImprovement iterations
+            if (i - lastImprovementIteration >= maxIterWithoutImprovement) {
+                System.out.println("Stopping early due to no improvement.");
+                break;
             }
 
             // Print the progress as a percentage
             double progress = (double) i / maxIterations * 100;
-            System.out.printf("Iteration %d of %d (%.2f%% complete)\n", i + 1, maxIterations, progress);
-
+            System.out.printf("Iteration %d of %d (%.2f%% complete)  DISTANCE %f\n", i + 1, maxIterations, progress, bestCost);
         }
 
         return bestRoute;
@@ -289,11 +340,12 @@ public class RouteOptimizationAlgorithms {
 
 
     public static List<List<Integer>> apply2OptOnSol(List<List<Integer>> solutions, List<Node> nodes) {
+        int depotId = NodeUtil.findStartNode(nodes).id;
         for (int i = 0; i < solutions.size(); i++) {
 
             solutions.get(i).remove(solutions.get(i).size() - 1);
             solutions.set(i, NodeUtil.reorderListWithDepotFirst(applyTwoOpt(solutions.get(i), nodes), nodes, 0));
-            solutions.get(i).add(101);
+            solutions.get(i).add(depotId);
         }
         return solutions;
     }
