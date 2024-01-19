@@ -124,6 +124,18 @@ public class NodeUtil {
         System.out.println("Global Route Distance : " + globalDistance);
     }
 
+    public static double getRouteRes(List<List<Integer>> solutions, List<Node> nodes) {
+        double globalDistance = 0;
+        for (int i = 0; i < solutions.size(); i++) {
+            List<Integer> route = solutions.get(i);
+            double distance = NodeUtil.totalDistance2(route, nodes);
+            System.out.println("Route " + (i + 1) + ": " + route.toString());
+            System.out.println("Distance: " + distance);
+            System.out.println(); // For better readability
+            globalDistance+=distance;
+        }
+return globalDistance;
+    }
 
 
 }

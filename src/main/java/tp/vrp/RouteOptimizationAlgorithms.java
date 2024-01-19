@@ -114,11 +114,12 @@ public class RouteOptimizationAlgorithms {
         List<Integer> currentRoute = new ArrayList<>(initialRoute);
         List<Integer> bestRoute = new ArrayList<>(currentRoute);
         double bestDistance = NodeUtil.totalDistance(currentRoute, nodes);
+        Random random = new Random();
 
         int lastImprovementIteration = 0; // Initialize the last improvement iteration
 
         for (int iteration = 0; iteration < maxIter; iteration++) {
-            List<Integer> perturbedRoute = perturbRoute(currentRoute, iteration);
+            List<Integer> perturbedRoute = applyTripleShift(currentRoute, random);
             List<Integer> localOptimumRoute = applyTwoOpt(perturbedRoute, nodes);
 
             double perturbedDistance = NodeUtil.totalDistance(localOptimumRoute, nodes);
@@ -349,6 +350,106 @@ public class RouteOptimizationAlgorithms {
         }
         return solutions;
     }
+    /**
+     * Applies the Triple Cross perturbation in Iterated Local Search.
+     *
+     * @param route The current route.
+     * @param nodes The list of all nodes.
+     * @return A perturbed route.
+     */
+    private static List<Integer> applyTripleCrossPerturbation(List<Integer> route, List<Node> nodes) {
+        Random random = new Random();
+        int size = route.size();
 
+        // Ensure there are enough nodes to perform the perturbation
+        if (size < 6) return new ArrayList<>(route); // Return a copy of the route
+
+        // Select three distinct segments in the route
+        int firstCut = random.nextInt(size - 3);
+        int secondCut = firstCut + 1 + random.nextInt(size - firstCut - 2);
+        int thirdCut = secondCut + 1 + random.nextInt(size - secondCut - 1);
+
+        // Create new route segments
+        List<Integer> segment1 = route.subList(0, firstCut);
+        List<Integer> segment2 = route.subList(firstCut, secondCut);
+        List<Integer> segment3 = route.subList(secondCut, thirdCut);
+        List<Integer> segment4 = route.subList(thirdCut, size);
+
+        // Reassemble the route in a new order
+        List<Integer> newRoute = new ArrayList<>();
+        newRoute.addAll(segment1);
+        newRoute.addAll(segment3); // Swap segment 2 and segment 3
+        newRoute.addAll(segment2);
+        newRoute.addAll(segment4);
+
+        return newRoute;
+    }
+
+    private static List<Integer> applyTripleShift(List<Integer> route, Random random) {
+        if (route.size() < 4) return new ArrayList<>(route); // Ensure enough nodes for shifting
+
+        int size = route.size();
+        int first = 1 + random.nextInt(size - 3); // Avoid depot
+        int second = 1 + random.nextInt(size - 3);
+        while(second == first) {
+            second = 1 + random.nextInt(size - 3);
+        }
+        int third = 1 + random.nextInt(size - 3);
+        while(third == first || third == second) {
+            third = 1 + random.nextInt(size - 3);
+        }
+
+        // Perform the shift
+        List<Integer> newRoute = new ArrayList<>(route);
+        int temp = newRoute.get(first);
+        newRoute.set(first, newRoute.get(second));
+        newRoute.set(second, newRoute.get(third));
+        newRoute.set(third, temp);
+
+        return newRoute;
+    }
+    private static List<Integer> applyDoubleReplace(List<Integer> route, List<Node> nodes, Random random) {
+        if (route.size() < 4) return new ArrayList<>(route); // Need at least 4 nodes
+
+        Set<Integer> routeSet = new HashSet<>(route);
+        List<Integer> nonRouteNodes = new ArrayList<>();
+        for (Node node : nodes) {
+            if (!routeSet.contains(node.id)) {
+                nonRouteNodes.add(node.id);
+            }
+        }
+
+        // Ensure there are at least two nodes to replace with
+        if (nonRouteNodes.size() < 2) return new ArrayList<>(route);
+
+        // Pick two distinct nodes from the route to replace (excluding depot)
+        int replaceIndex1 = 1 + random.nextInt(route.size() - 2);
+        int replaceIndex2 = 1 + random.nextInt(route.size() - 2);
+        while (replaceIndex2 == replaceIndex1) {
+            replaceIndex2 = 1 + random.nextInt(route.size() - 2);
+        }
+
+        // Pick two distinct nodes from outside of the route
+        int newNode1Index = random.nextInt(nonRouteNodes.size());
+        int newNode2Index = random.nextInt(nonRouteNodes.size());
+        while (newNode2Index == newNode1Index) {
+            newNode2Index = random.nextInt(nonRouteNodes.size());
+        }
+
+        List<Integer> newRoute = new ArrayList<>(route);
+        newRoute.set(replaceIndex1, nonRouteNodes.get(newNode1Index));
+        newRoute.set(replaceIndex2, nonRouteNodes.get(newNode2Index));
+
+        return newRoute;
+    }
+
+    private static List<Integer> applyCombinedPerturbation(List<Integer> route, List<Node> nodes, Random random) {
+        if (random.nextBoolean()) {
+            return applyDoubleReplace(route, nodes, random);
+        } else {
+            return applyTripleShift(route, random);
+        }
+    }
 
 }
+
