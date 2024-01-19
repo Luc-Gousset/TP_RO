@@ -32,7 +32,7 @@ public class Main {
         List<List<Integer>> bestSolutionsForVehicles = new ArrayList<>();
         long startTime = System.nanoTime();
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 2; i++) {
             List<Integer> ilsResult = RouteOptimizationAlgorithms.iteratedLocalSearchWithTwoOpt(
                     RouteOptimizationAlgorithms.randomHeuristic(nodes), nodes, 150, 10);
             double currentDistance = NodeUtil.totalDistance(ilsResult, nodes);
@@ -65,7 +65,9 @@ public class Main {
         TourPlotter.plotTours(bestSolutionsForVehicles, nodes);
         TourPlotter.plotSequence(bestSolution, nodes);
         System.out.println("Execution Time: " + duration + " seconds");
+        double rescapa = NodeUtil.getResidualCapa(bestSolutionsForVehicles, nodes, requests, vehicules.getFirst().getCapacityInitial());
 
+        System.out.println("Total res capa = : " + rescapa + " moyenne " + rescapa/bestSolutionsForVehicles.size());
 
     }
 
