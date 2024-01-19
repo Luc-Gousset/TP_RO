@@ -35,7 +35,7 @@ public class Main {
             List<Integer> ilsResult = RouteOptimizationAlgorithms.iteratedLocalSearchWithTwoOpt(
                     RouteOptimizationAlgorithms.randomHeuristic(nodes), nodes, 150, 10);
             double currentDistance = NodeUtil.totalDistance(ilsResult, nodes);
-            System.out.println("Grasp distance sequence " + i + " " + currentDistance);
+            System.out.println("ILS distance sequence " + i + " " + currentDistance);
 
             List<Integer> shortestPath = NodeUtil.reorderListWithDepotFirst(ilsResult, nodes, 0);
 
@@ -51,8 +51,8 @@ public class Main {
             }
 
             NodeUtil.printRouteResults(solutions, nodes);
-            TourPlotter.plotTours(solutions, nodes);
-            TourPlotter.plotSequence(shortestPath, nodes);
+            //TourPlotter.plotTours(solutions, nodes);
+            //TourPlotter.plotSequence(shortestPath, nodes);
         }
 
         // Print or process the best overall solution after all iterations
