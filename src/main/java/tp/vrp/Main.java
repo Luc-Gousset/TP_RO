@@ -19,7 +19,7 @@ public class Main {
 
 
         XMLParser parser = new XMLParser();
-        parser.parseXMLFile("JDD03.xml");
+        parser.parseXMLFile("JDD01.xml");
         List<Node> nodes = parser.getNodeList();
         List<Request> requests = parser.getRequestList();
         List<Vehicule> vehicules = parser.getVehicleList();
@@ -30,8 +30,9 @@ public class Main {
         double minDistance = Double.MAX_VALUE;
         List<Integer> bestSolution = new ArrayList<>();
         List<List<Integer>> bestSolutionsForVehicles = new ArrayList<>();
+        long startTime = System.nanoTime();
 
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 20; i++) {
             List<Integer> ilsResult = RouteOptimizationAlgorithms.iteratedLocalSearchWithTwoOpt(
                     RouteOptimizationAlgorithms.randomHeuristic(nodes), nodes, 150, 10);
             double currentDistance = NodeUtil.totalDistance(ilsResult, nodes);
@@ -54,12 +55,18 @@ public class Main {
             //TourPlotter.plotTours(solutions, nodes);
             //TourPlotter.plotSequence(shortestPath, nodes);
         }
+        long endTime = System.nanoTime();
+        // Calculate elapsed time in milliseconds
+        long duration = (endTime - startTime) / 1_000_000_000; // Convert to milliseconds
 
         // Print or process the best overall solution after all iterations
         System.out.println("Best Overall Distance: " + minDistance);
         NodeUtil.printRouteResults(bestSolutionsForVehicles, nodes);
         TourPlotter.plotTours(bestSolutionsForVehicles, nodes);
         TourPlotter.plotSequence(bestSolution, nodes);
+        System.out.println("Execution Time: " + duration + " seconds");
+
+
     }
 
 
@@ -108,7 +115,7 @@ public class Main {
 
     public static List<List<Integer>> computeSolFromSegment(List<Integer> shortestPath, List<Node> nodes, List<Request> requests, List<Vehicule> vehicules){
         List<Edge> edges = new ArrayList<>();
-
+        int depotId = NodeUtil.findStartNode(nodes).id;
         for (int i = 0; i < shortestPath.size(); i++) {
             double current_load = 0;
             double current_distance = 0;
@@ -125,7 +132,7 @@ public class Main {
                     if (current_request.getQuantity() + current_load <= vehicules.get(0).getCapacityInitial()) {
                         current_load += current_request.getQuantity();
 
-                        edges.add(new Edge(shortestPath.get(i), current_node.id, current_distance + Node.GetDistance(current_node, NodeUtil.findNodeById(101, nodes))));
+                        edges.add(new Edge(shortestPath.get(i), current_node.id, current_distance + Node.GetDistance(current_node, NodeUtil.findStartNode(nodes))));
 
                     } else
                         break;
@@ -143,15 +150,15 @@ public class Main {
         int currentNodeStopId = 1;
         List<List<Integer>> solutions = new ArrayList<>();
         List<Integer> sol = new ArrayList<>();
-        sol.add(101);
+        sol.add(depotId);
         for (int i = 1; i < shortestPath.size(); i++) {
             if (Objects.equals(shortestPath.get(i), edgesList.get(currentNodeStopId))) {
                 sol.add(shortestPath.get(i));
-                sol.add(101);
+                sol.add(depotId);
                 //sol.requestArrayList = (ArrayList<Request>) requests;
                 solutions.add(sol);
                 sol = new ArrayList<>();
-                sol.add(101);
+                sol.add(depotId);
                 if (currentNodeStopId < edgesList.size() - 1)
                     currentNodeStopId++;
             } else {
