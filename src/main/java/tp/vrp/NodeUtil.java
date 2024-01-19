@@ -1,6 +1,7 @@
 package tp.vrp;
 
 import tp.vrp.Data.Node;
+import tp.vrp.Data.Request;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -135,6 +136,27 @@ public class NodeUtil {
             globalDistance+=distance;
         }
 return globalDistance;
+    }
+
+    public static double getResidualCapa(List<List<Integer>> solutions, List<Node> nodes, List<Request> requests, int VehiculeCapa )
+    {
+        double capaRes = 0;
+        for (int i = 0; i < solutions.size(); i++) {
+            double capa = 0;
+
+            List<Integer> route = solutions.get(i);
+
+            for (int y = 1; y<route.size()-1; y++)
+            {
+                int finalY = y;
+                capa += requests.stream().filter(request -> request.getNode() == route.get(finalY)).findFirst().get().getQuantity();
+            }
+
+            capaRes = VehiculeCapa - capa;
+
+        }
+        return capaRes;
+
     }
 
 
