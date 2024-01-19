@@ -25,37 +25,48 @@ public class Main {
         List<Vehicule> vehicules = parser.getVehicleList();
 
 
-        //List<Integer> dumbPath = RouteOptimizationAlgorithms.dumbHeuristic(nodes);
-        List<Integer> dumbPath = RouteOptimizationAlgorithms.pilotHeuristic(nodes);
-        for(int i = 0; i<20; i++)
-        {
-            //List<Integer> graspResult = RouteOptimizationAlgorithms.grasp(nodes, 50);
-            List<Integer> graspResult = RouteOptimizationAlgorithms.iteratedLocalSearchWithTwoOpt(dumbPath, nodes, 100);
-            System.out.println("Grasp distance sequence " + i +" " + NodeUtil.totalDistance(graspResult, nodes));
-            //System.out.println();
+        List<Integer> dumbPath = RouteOptimizationAlgorithms.dumbHeuristic(nodes);
 
-            List<Integer> shortestPath = NodeUtil.reorderListWithDepotFirst(graspResult, nodes, 0);
+        double minDistance = Double.MAX_VALUE;
+        List<Integer> bestSolution = new ArrayList<>();
+        List<List<Integer>> bestSolutionsForVehicles = new ArrayList<>();
 
+        for (int i = 0; i < 200; i++) {
+            List<Integer> ilsResult = RouteOptimizationAlgorithms.iteratedLocalSearchWithTwoOpt(
+                    RouteOptimizationAlgorithms.randomHeuristic(nodes), nodes, 150, 10);
+            double currentDistance = NodeUtil.totalDistance(ilsResult, nodes);
+            System.out.println("Grasp distance sequence " + i + " " + currentDistance);
 
+            List<Integer> shortestPath = NodeUtil.reorderListWithDepotFirst(ilsResult, nodes, 0);
 
             List<List<Integer>> solutions = computeSolFromSegment(shortestPath, nodes, requests, vehicules);
-
-            //Reaply 2 OPT
             solutions = RouteOptimizationAlgorithms.apply2OptOnSol(solutions, nodes);
 
+            double routeDIs = NodeUtil.getRouteRes(solutions, nodes);
+            // Check if the current distance is less than the minimum distance found so far
+            if (routeDIs < minDistance) {
+                minDistance = routeDIs;
+                bestSolution = new ArrayList<>(shortestPath);
+                bestSolutionsForVehicles = new ArrayList<>(solutions); // Store the best solutions for each vehicle
+            }
+
             NodeUtil.printRouteResults(solutions, nodes);
-
-
             TourPlotter.plotTours(solutions, nodes);
             TourPlotter.plotSequence(shortestPath, nodes);
-
         }
 
-
-
-
-
+        // Print or process the best overall solution after all iterations
+        System.out.println("Best Overall Distance: " + minDistance);
+        NodeUtil.printRouteResults(bestSolutionsForVehicles, nodes);
+        TourPlotter.plotTours(bestSolutionsForVehicles, nodes);
+        TourPlotter.plotSequence(bestSolution, nodes);
     }
+
+
+
+
+
+
 
     private static List<Integer> ford(int start, int end, List<Edge> edges, int numVertices) {
         double[] distances = new double[numVertices];
