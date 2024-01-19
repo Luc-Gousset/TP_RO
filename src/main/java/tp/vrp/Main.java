@@ -32,12 +32,12 @@ public class Main {
         List<List<Integer>> bestSolutionsForVehicles = new ArrayList<>();
 
         for (int i = 0; i < 200; i++) {
-            List<Integer> graspResult = RouteOptimizationAlgorithms.iteratedLocalSearchWithTwoOpt(
+            List<Integer> ilsResult = RouteOptimizationAlgorithms.iteratedLocalSearchWithTwoOpt(
                     RouteOptimizationAlgorithms.randomHeuristic(nodes), nodes, 150, 10);
-            double currentDistance = NodeUtil.totalDistance(graspResult, nodes);
+            double currentDistance = NodeUtil.totalDistance(ilsResult, nodes);
             System.out.println("Grasp distance sequence " + i + " " + currentDistance);
 
-            List<Integer> shortestPath = NodeUtil.reorderListWithDepotFirst(graspResult, nodes, 0);
+            List<Integer> shortestPath = NodeUtil.reorderListWithDepotFirst(ilsResult, nodes, 0);
 
             List<List<Integer>> solutions = computeSolFromSegment(shortestPath, nodes, requests, vehicules);
             solutions = RouteOptimizationAlgorithms.apply2OptOnSol(solutions, nodes);
